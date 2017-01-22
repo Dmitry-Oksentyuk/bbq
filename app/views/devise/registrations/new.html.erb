@@ -1,0 +1,31 @@
+<div class="col-md-6">
+  <h2><%= t('.sign_up') %></h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+
+      <div class="field">
+        <%= f.email_field(:email, autofocus: true, class: "form-control", placeholder:"Email") %>
+      </div>
+      </br>
+
+      <div class="field">
+        <%= f.password_field(:password, autocomplete: "off", class: "form-control", placeholder: "Пароль") %>
+      </div>
+      </br>
+
+      <div class="field">
+        <%= f.password_field(:password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Повторите пароль") %>
+      </div>
+      </br>
+
+      <div class="actions">
+        <%= f.submit(t('.sign_up'), class: "btn btn-success btn-lg")  %>
+      </div>
+
+
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
