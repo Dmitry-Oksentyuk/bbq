@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
 
+  validates_associated :subscriptions
+
   # имя юзера должно быть, и не длиннее 35 букв
   validates :name, presence: true, length: {maximum: 35}
 
@@ -17,6 +19,9 @@ class User < ActiveRecord::Base
   before_validation :set_name, on: :create
 
   after_commit :link_subscriptions, on: :create
+
+  # Добавляем аплоадер аватарок, чтобы заработал carrierwave
+  mount_uploader :avatar, AvatarUploader
 
   private
 
