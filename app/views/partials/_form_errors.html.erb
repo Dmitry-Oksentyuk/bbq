@@ -4,6 +4,8 @@
 
 <% if errors.any? %>
     <div class="alert alert-danger">
+      В вашей форме <%= errors.count %>
+      <%=Russian.p(errors.count, "ошибка", "ошибки", "ошибок")%>
       <ul>
         <% errors.full_messages.each do |message| %>
             <li><%= message %></li>
