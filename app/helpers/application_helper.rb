@@ -9,28 +9,40 @@ module ApplicationHelper
     end
   end
 
+  # Аналогично user_avatar, только возвращает миниатюрную версию
+  def user_avatar_thumb(user)
+    if user.avatar.file.present?
+      user.avatar.thumb.url
+    else
+      asset_path('user.png')
+    end
+  end
+
+  # Возвращает адрес рандомной фотки события, если есть, хотя бы одна
+  # Или ссылку на дефолтную картинку
+  def event_photo(event)
+    photos = event.photos.persisted
+
+    if photos.any?
+      photos.sample.photo.url
+    else
+      asset_path('event.jpg')
+    end
+  end
+
+  # Аналогично event_photo, только возвращает миниатюрную версию
+  def event_thumb(event)
+    photos = event.photos.persisted
+
+    if photos.any?
+      photos.sample.photo.thumb.url
+    else
+      asset_path('event_thumb.jpg')
+    end
+  end
+
+  # Хелпер для иконок font-awesome
   def fa_icon(icon_class)
     content_tag 'span', '', class: "fa fa-#{icon_class}"
   end
-
-  #метод склонятор, выводит существительные в нужном падеже
-  def sklonyator(number, krokodil, krokodila, krokodilov)
-    if number == nil || !number.is_a?(Numeric)
-      number = 0
-    end
-
-    ostatok = number % 10
-    ostatok_2 = number % 100
-
-    if ostatok_2 >= 11 && ostatok_2 <= 14
-      return krokodilov
-    elsif ostatok == 1
-      return krokodil
-    elsif ostatok >= 2 && ostatok <= 4
-      return krokodila
-    elsif ostatok == 0 ||ostatok > 4
-      return krokodilov
-    end
-  end
-
 end
