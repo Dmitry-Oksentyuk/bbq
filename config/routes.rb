@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+  namespace :users do
+  get 'omniauth_callbacks/vkontakte'
+  end
+
   # дергаем спец. девайзовский метод, который генерит все нужные ему пути
-  devise_for :users
+
+  devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
   root "events#index"
 
@@ -16,4 +21,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :edit, :update]
+
+
 end
