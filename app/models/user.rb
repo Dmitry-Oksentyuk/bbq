@@ -56,6 +56,10 @@ class User < ActiveRecord::Base
       # И генерируем ему случайный надежный парроль
       # пользоваться им никто не будет, но формально по нему можно войти
       user.password = Devise.friendly_token[0,20]
+
+      user.avatar_vk = access_token.info.image
+
+      user.avatar_vk_lg = access_token.extra.raw_info.id.photo_big
     end
   end
 end
