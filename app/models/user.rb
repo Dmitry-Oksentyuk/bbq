@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 
       user.avatar_vk = access_token.info.image
 
-      user.avatar_vk_lg = access_token.extra.raw_info.id.photo_big
+      user.avatar_vk_lg = access_token.extra.raw_info.photo_big
     end
   end
 end
