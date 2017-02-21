@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+// Скрипт подключеня lightbox - простейшая галерея картинкок
+
+$(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
